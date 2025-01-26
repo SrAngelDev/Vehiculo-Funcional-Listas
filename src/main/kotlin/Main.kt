@@ -20,4 +20,5 @@ fun main() {
 
     val v6 = VehiculoFactory.random()
     println(v6)
+
 }
