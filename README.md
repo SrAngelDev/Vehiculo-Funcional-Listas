@@ -11,7 +11,7 @@ Queremos implementar las operaciones CRUD clásicas:
 - **Obtener todos los vehículos**
 - **Obtener un vehículo por su ID**
 - **Obtener un vehículo por su matrícula**
-- **Salvar un nuevo vehículo**
+- **Crear un nuevo vehículo**
 - **Actualizar un vehículo existente**
 - **Borrar un vehículo**
 
