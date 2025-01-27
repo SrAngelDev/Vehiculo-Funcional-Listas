@@ -21,63 +21,79 @@ fun main() {
     vehiculos.create(v4)
     vehiculos.create(v5)
 
-    println("Todos los vehículos:")
+    println(color.brightYellow("Todos los vehículos:"))
     vehiculos.findAll().forEach { println(it) }
 
-    println("\nVehículo por ID:")
+    println(color.brightYellow("Vehículo por ID:"))
     println(vehiculos.findById(1))
+    println()
 
-    println("\nVehículo por matrícula:")
+    println(color.brightYellow("Vehículo por matrícula:"))
     println(vehiculos.findAll().firstOrNull { it.matricula == "1234ABC" })
+    println()
 
-    println("\nGuardar un nuevo vehículo:")
+    println(color.brightYellow("Guardar un nuevo vehículo:"))
     val nuevoVehiculo = CocheGasolinaImpl("Peugueot", "5433JJB", 53000)
     vehiculos.create(nuevoVehiculo)
     vehiculos.findAll().forEach { println(it) }
+    println()
 
-    println("\nActualizar un vehículo:")
+    println(color.brightYellow("Actualizar un vehículo:"))
     val vehiculoActualizado = CocheHibridoImpl("Peugueot", "5433JJB", 53000)
     vehiculos.update(1, vehiculoActualizado)
     println(vehiculos.findById(1))
+    println()
 
-    println("\nBorrar un vehículo:")
+    println(color.brightYellow("Borrar un vehículo:"))
     vehiculos.delete(1)
     vehiculos.findAll().forEach { println(it) }
+    println()
 
-    println("\nTodos los coches de gasolina:")
+    println(color.brightYellow("Todos los coches de gasolina:"))
     vehiculos.filterBy { it?.tipo == Tipo.COCHE_GASOLINA }.forEach { println(it) }
+    println()
 
-    println("\nTodas las motocicletas:")
+    println(color.brightYellow("Todas las motocicletas:"))
     vehiculos.filterBy { it?.tipo == Tipo.MOTOCICLETA }.forEach { println(it) }
+    println()
 
-    println("\nTodos los coches eléctricos:")
+    println(color.brightYellow("Todos los coches eléctricos:"))
     vehiculos.filterBy { it?.tipo == Tipo.COCHE_ELECTRICO }.forEach { println(it) }
+    println()
 
-    println("\nContar vehículos:")
+    println(color.brightYellow("Contar vehículos:"))
     println("Total de vehículos: ${vehiculos.countBy { true }}")
+    println()
 
 
-    println("\nMáximo de kilómetros:")
+    println(color.brightYellow("Máximo de kilómetros:"))
     println("Máximo de kilómetros: ${vehiculos.maxBy({ it.kilometros }, { true })}")
+    println()
 
-    println("\nMínimo de kilómetros:")
+    println(color.brightYellow("Mínimo de kilómetros:"))
     println("Mínimo de kilómetros: ${vehiculos.minBy({ it.kilometros }, { true })}")
+    println()
 
-    println("\nMedia de kilómetros:")
+    println(color.brightYellow("Media de kilómetros:"))
     println("Media de kilometros: ${vehiculos.averageBy({ it.kilometros.toDouble() }, { true })}")
+    println()
 
 
-    println("\nOrdenar vehículos por ID ascendente:")
+    println(color.brightYellow("Ordenar vehículos por ID ascendente:"))
     vehiculos.sortedBy(ModoOrdenamiento.ASCENDENTE) { it.id.toDouble() }.forEach { println(it) }
+    println()
 
-    println("\nOrdenar vehículos por ID descendente:")
+    println(color.brightYellow("Ordenar vehículos por ID descendente:"))
     vehiculos.sortedBy(ModoOrdenamiento.DESCENDENTE) { it.id.toDouble() }.forEach { println(it) }
+    println()
 
-    println("\nOrdenar vehículos por kilómetros ascendente:")
+    println(color.brightYellow("Ordenar vehículos por kilómetros ascendente:"))
     vehiculos.sortedBy(ModoOrdenamiento.ASCENDENTE) { it.kilometros.toDouble() }.forEach { println(it) }
+    println()
 
-    println("\nOrdenar vehículos por kilómetros descendente:")
+    println(color.brightYellow("Ordenar vehículos por kilómetros descendente:"))
     vehiculos.sortedBy(ModoOrdenamiento.DESCENDENTE) { it.kilometros.toDouble() }.forEach { println(it) }
+    println()
 
 }
 
