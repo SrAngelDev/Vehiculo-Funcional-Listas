@@ -10,6 +10,7 @@ open class Vehiculo(
     val createdAt: LocalDateTime = LocalDateTime.now(),
     val updatedAt: LocalDateTime = LocalDateTime.now(),
     val isDeleted: Boolean = false,
+    val tipo: Tipo
 ) {
     companion object {
         private var nextId = 1
@@ -19,10 +20,10 @@ open class Vehiculo(
     }
 
     fun copy(id: Int, marca: String, matricula: String, kilometros: Int, createdAt: LocalDateTime, updatedAt: LocalDateTime, isDeleted: Boolean): Vehiculo {
-        return Vehiculo(id, marca, matricula, kilometros, createdAt, updatedAt, isDeleted)
+        return Vehiculo(id, marca, matricula, kilometros, createdAt, updatedAt, isDeleted, tipo)
     }
 
     override fun toString(): String {
-        return ("Vehiculo=(id=$id, marca=$marca, matricula='$matricula', kilometros=$kilometros, createdAt=$createdAt, updatedAt=$updatedAt, isDeleted=$isDeleted)")
+        return ("Vehiculo=(id=$id, marca=$marca, matricula='$matricula', kilometros=$kilometros, createdAt=$createdAt, updatedAt=$updatedAt, isDeleted=$isDeleted, tipo=$tipo)")
     }
 }

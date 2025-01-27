@@ -4,7 +4,8 @@ class MotocicletaImpl(
     marca: String,
     matricula: String,
     kilometros: Int,
-): Vehiculo(marca = marca, matricula = matricula, kilometros = kilometros), Motocicleta {
+    tipo: Tipo = Tipo.MOTOCICLETA
+): Vehiculo(marca = marca, matricula = matricula, kilometros = kilometros, tipo = tipo), Motocicleta {
     override fun cilindrada() {
         println("La motocicleta tiene una cilindrada de 1200cc")
     }

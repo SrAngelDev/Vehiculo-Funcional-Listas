@@ -4,7 +4,8 @@ class CocheHibridoImpl(
     marca: String ,
     matricula: String,
     kilometros: Int,
-): CocheElectrico, CocheGasolina, Vehiculo(marca = marca, matricula = matricula, kilometros = kilometros) {
+    tipo: Tipo = Tipo.COCHE_HIBRIDO
+): CocheElectrico, CocheGasolina, Vehiculo(marca = marca, matricula = matricula, kilometros = kilometros, tipo = tipo) {
     override fun tiempoCarga() {
         println("El coche hibrido tiene un tiempo de carga de 1 hora")
     }

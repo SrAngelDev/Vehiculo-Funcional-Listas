@@ -45,12 +45,12 @@ fun <T> Array<T?>.indexOf(condition: (T?) -> Boolean): Int {
     return -1
 }
 
-fun <T> Array<T?>.averageBy(predicate: (T) -> Boolean): Double {
+fun <T> Array<T?>.averageBy(selector: (T) -> Double, predicate: (T) -> Boolean): Double {
     var count = 0
     var total = 0.0
     for (element in this) {
         if (element != null && predicate(element)) {
-            total += (element as? Number)?.toDouble() ?: 0.0
+            total += selector(element)
             count++
         }
     }

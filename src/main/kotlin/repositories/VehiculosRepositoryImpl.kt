@@ -1,16 +1,8 @@
 package srangeldev.repositories
 
 import org.lighthousegames.logging.logging
-import srangeldev.extensions.ModoOrdenamiento
+import srangeldev.extensions.*
 import srangeldev.extensions.ModoRedimension
-import srangeldev.extensions.countBy
-import srangeldev.extensions.filterBy
-import srangeldev.extensions.firstOrNull
-import srangeldev.extensions.indexOf
-import srangeldev.extensions.maxByOrNull
-import srangeldev.extensions.minByOrNull
-import srangeldev.extensions.redimensionar
-import srangeldev.extensions.sortedBy
 import srangeldev.models.Vehiculo
 import java.time.LocalDateTime
 
@@ -30,9 +22,9 @@ class VehiculosRepositoryImpl: VehiculosRepository {
         return vehiculos.filterBy(predicate)
     }
 
-    override fun averageBy(predicate: (Vehiculo) -> Boolean): Double {
-        logger.debug { "Calculando el consumo medio" }
-        return averageBy(predicate)
+    override fun averageBy(selector: (Vehiculo) -> Double, predicate: (Vehiculo) -> Boolean): Double {
+        logger.debug { "Calculando la media" }
+        return vehiculos.averageBy(selector, predicate)
     }
 
     override fun countBy(predicate: (Vehiculo) -> Boolean): Int {

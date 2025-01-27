@@ -4,7 +4,8 @@ class CocheElectricoImpl(
     marca: String,
     matricula: String,
     kilometros: Int,
-): Vehiculo(marca = marca, matricula = matricula, kilometros = kilometros), CocheElectrico {
+    tipo: Tipo = Tipo.COCHE_ELECTRICO
+): Vehiculo(marca = marca, matricula = matricula, kilometros = kilometros, tipo = tipo), CocheElectrico {
     override fun tiempoCarga() {
         println("El coche electrico tarda en cargar 2 horas")
     }
