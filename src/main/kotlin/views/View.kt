@@ -45,19 +45,19 @@ class View(
        TODO()
     }
 
-    private fun eliminarVehiculo(): Boolean {
+    private fun eliminarVehiculo() {
         TODO()
     }
 
-    private fun actualizarVehiculo(): Vehiculo? {
+    private fun actualizarVehiculo() {
        TODO()
     }
 
-    private fun añadirVehiculo(): Vehiculo {
+    private fun añadirVehiculo() {
         TODO()
     }
 
-    private fun buscarVehiculoPorId(): Vehiculo? {
+    private fun buscarVehiculoPorId() {
        TODO()
     }
 
