@@ -2,6 +2,7 @@
 
 Nuestro concesionario vende una variedad de vehículos que tienen los siguientes atributos:
 - ID autonumérico
+- Marca del Vehiculo
 - Matrícula de 4 números y 3 letras
 - Kilometraje
 
