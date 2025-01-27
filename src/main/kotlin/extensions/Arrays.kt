@@ -23,7 +23,9 @@ inline fun <T> Array<T?>.countBy(predicate: (T) -> Boolean = { true }): Int {
  * @return Array de item que cumplen la condición
  */
 inline fun <reified T> Array<T?>.filterBy(predicate: (T) -> Boolean): Array<T> {
-    val result = Array<T>(this.countBy(predicate)) { null as T }
+    val count = this.count { it != null && predicate(it) }
+    val result = arrayOfNulls<T>(count)
+
     var index = 0
     for (item in this) {
         if (item != null && predicate(item)) {
@@ -31,8 +33,12 @@ inline fun <reified T> Array<T?>.filterBy(predicate: (T) -> Boolean): Array<T> {
             index++
         }
     }
-    return result
+
+    return result as Array<T>
 }
+
+
+
 
 /**
  * Realiza una acción sobre cada item

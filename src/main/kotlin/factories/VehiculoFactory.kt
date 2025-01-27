@@ -20,7 +20,7 @@ class VehiculoFactory {
         }
 
         fun random(): Vehiculo {
-            val kilometros = (100000..1000000).random()
+            val kilometros = (0..1000000).random()
             val numRandom = (0..100).random()
 
             val marca = marcas.random()

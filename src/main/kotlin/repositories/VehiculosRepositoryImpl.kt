@@ -137,7 +137,7 @@ class VehiculosRepositoryImpl: VehiculosRepository {
         logger.debug { "Redimensionando si hace falta" }
         val count = vehiculos.count { true }
         if (count < maxVehiculos / 2) {
-            logger.error { "Redimensionando por debajo del 50%" }
+            logger.error { "Redimensionando al 50%" }
             redimensionar(modo = ModoRedimension.DISMINUIR)
         }
     }
