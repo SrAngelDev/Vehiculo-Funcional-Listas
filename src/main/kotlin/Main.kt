@@ -6,13 +6,6 @@ import srangeldev.factories.*
 import srangeldev.extensions.*
 import srangeldev.repositories.*
 
-
-import srangeldev.models.*
-import srangeldev.views.*
-import srangeldev.factories.*
-import srangeldev.extensions.*
-import srangeldev.repositories.*
-
 fun main() {
     val vehiculoFactory = VehiculoFactory
     val v1 = vehiculoFactory.random()
