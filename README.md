@@ -1,11 +1,34 @@
-software de gestion para un concesionario de coches.
-Nuestro concesionario vende vehículos, que tienen un id autonumérico, una matricula de 4 números y 3 letras y los kilómetros. A partir de ahí queremos crear las operaciones CRUD conocidas, obeter todos, obtener en base a su id, obtener en base a su matricula, el salvar el actualizar y el borrar. Ademas queremos consultas especificas intentando agruparlos en los menos posibles que nos permitan obtener todos los coches de gasolina, las motocicletas, el coche eléctrico. Ademas quiero contar los vehículos según determinadas condiciones, la media, el máximo, el mínimo y quiero poder ordenar los vehículos en base a su matricula y los kilómetros de manera ascendente y descendente. 
+# Software de Gestión para Concesionario de Coches
 
-CONSULTA EJEMPLO: Motocicleta de mayor cilindrada con menos kilómetros, 
+Nuestro concesionario vende una variedad de vehículos que tienen los siguientes atributos:
+- ID autonumérico
+- Matrícula de 4 números y 3 letras
+- Kilometraje
 
-Coche gasolina: consumo
-Motocicleta: cilindrada
-Coche eléctrico: Tiempo Carga
+## Operaciones CRUD
 
+Queremos implementar las operaciones CRUD clásicas:
+- **Obtener todos los vehículos**
+- **Obtener un vehículo por su ID**
+- **Obtener un vehículo por su matrícula**
+- **Crear un nuevo vehículo**
+- **Actualizar un vehículo existente**
+- **Borrar un vehículo**
 
-Coche Hibrido: Mezcla de coche gasolina y eléctrico.
+## Consultas Específicas
+
+Además, queremos realizar consultas específicas, agrupándolas en las menos posibles, que nos permitan:
+- Obtener todos los coches de gasolina
+- Obtener todas las motocicletas
+- Obtener todos los coches eléctricos
+
+## Estadísticas y Ordenación
+
+Queremos contar los vehículos según diferentes condiciones, y calcular la media, el máximo y el mínimo. Además, queremos poder ordenar los vehículos por su matrícula y su kilometraje en orden ascendente y descendente.
+
+### Métdos propios.
+
+- Coche de gasolina: consumo
+- Motocicleta: cilindrada
+- Coche eléctrico: tiempo de carga
+- Coche híbrido: combinación de coche de gasolina y coche eléctrico
