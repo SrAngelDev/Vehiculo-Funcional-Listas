@@ -2,11 +2,7 @@ package srangeldev.extensions
 
 import srangeldev.models.Vehiculo
 
-/**
- * Contar cuantos items hay que cumplen una condición
- * @param predicate Condición a cumplir
- * @return Número de items que cumplen la condición
- */
+
 inline fun <T> Array<T?>.countBy(predicate: (T) -> Boolean = { true }): Int {
     var count = 0
     for (element in this) {
@@ -17,11 +13,6 @@ inline fun <T> Array<T?>.countBy(predicate: (T) -> Boolean = { true }): Int {
     return count
 }
 
-/**
- * Buscar item que cumplan una condición
- * @param predicate Condición a cumplir
- * @return Array de item que cumplen la condición
- */
 inline fun <reified T> Array<T?>.filterBy(predicate: (T) -> Boolean): Array<T> {
     val count = this.count { it != null && predicate(it) }
     val result = arrayOfNulls<T>(count)
@@ -37,14 +28,6 @@ inline fun <reified T> Array<T?>.filterBy(predicate: (T) -> Boolean): Array<T> {
     return result as Array<T>
 }
 
-
-
-
-/**
- * Realiza una acción sobre cada item
- * @param action Acción a realizar
- * @return Unit
- */
 fun <T> Array<T?>.forEach(action: (T) -> Unit) {
     for (item in this) {
         if (item != null) {
@@ -53,11 +36,6 @@ fun <T> Array<T?>.forEach(action: (T) -> Unit) {
     }
 }
 
-/**
- * Devuelve el índice de un item que cumpla una condición
- * @param condition Condición a cumplir
- * @return Índice del item que cumple la condición o -1 si no se encuentra
- */
 fun <T> Array<T?>.indexOf(condition: (T?) -> Boolean): Int {
     for (index in this.indices) {
         if (condition(this[index])) {
@@ -67,11 +45,6 @@ fun <T> Array<T?>.indexOf(condition: (T?) -> Boolean): Int {
     return -1
 }
 
-/**
- * Devuelve el índice de un item que cumpla una condición
- * @param predicate Condición a cumplir
- * @return Índice del item que cumple la condición o -1 si no se encuentra
- */
 fun <T> Array<T?>.averageBy(predicate: (T) -> Boolean): Double {
     var count = 0
     var total = 0.0
@@ -84,11 +57,6 @@ fun <T> Array<T?>.averageBy(predicate: (T) -> Boolean): Double {
     return if (count == 0) 0.0 else total / count
 }
 
-/**
- * Suma los valores de un campo de los items que cumplan una condición
- * @param predicate Condición a cumplir
- *
- */
 fun <T> Array<T?>.sumBy(predicate: (T) -> Boolean): Double {
     var total = 0.0
     for (element in this) {
@@ -99,11 +67,6 @@ fun <T> Array<T?>.sumBy(predicate: (T) -> Boolean): Double {
     return total
 }
 
-/**
- * Devuelve el primer item que cumpla una condición
- * @param predicate Condición a cumplir
- * @return item que cumple la condición o null si no se encuentra
- */
 fun <T> Array<T?>.firstOrNull(predicate: (T) -> Boolean = { true }): T? {
     for (element in this) {
         if (element != null && predicate(element)) {
@@ -113,11 +76,6 @@ fun <T> Array<T?>.firstOrNull(predicate: (T) -> Boolean = { true }): T? {
     return null
 }
 
-/**
- * Devuelve el último item que cumpla una condición
- * @param predicate Condición a cumplir
- * @return item que cumple la condición o null si no se encuentra
- */
 fun <T> Array<T?>.lastOrNull(predicate: (T) -> Boolean = { true }): T? {
     var lastMatch: T? = null
     for (element in this) {
@@ -128,12 +86,6 @@ fun <T> Array<T?>.lastOrNull(predicate: (T) -> Boolean = { true }): T? {
     return lastMatch
 }
 
-/**
- * Devuelve el máximo item que cumpla una condición
- * @param selector Campo por el que buscar el máximo
- * @param predicate Condición a cumplir
- * @return item que cumple el máximo que cumple la condición o null si no se encuentra
- */
 fun <T> Array<T?>.maxByOrNull(selector: (Vehiculo) -> Int, predicate: (T) -> Boolean): T? {
     var maxElement: T? = null
     var maxValue: Int? = null
@@ -149,12 +101,6 @@ fun <T> Array<T?>.maxByOrNull(selector: (Vehiculo) -> Int, predicate: (T) -> Boo
     return maxElement
 }
 
-/**
- * Devuelve el item con la menor valor que cumpla la condición
- * @param selector Campo por el que buscar el mínimo
- * @param predicate Condición a cumplir
- * @return Item con la menor valor que cumple la condición o null si no se encuentra
- */
 fun <T> Array<T?>.minByOrNull(selector: (Vehiculo) -> Int, predicate: (T) -> Boolean): T? {
     var minElement: T? = null
     var minValue: Int? = null
@@ -170,13 +116,6 @@ fun <T> Array<T?>.minByOrNull(selector: (Vehiculo) -> Int, predicate: (T) -> Boo
     return minElement
 }
 
-/**
- * Redimensiona el array de items
- * @param modo Modo de redimensión: Aumentar o Disminuir
- * @param maxItemsNúmero máximo de items
- * @return Array de items redimensionado
- * @see ModoRedimension
- */
 inline fun <reified T> Array<T?>.redimensionar(modo: ModoRedimension, maxItems: Int): Array<T?> {
     val nuevoArray = arrayOfNulls<T>(maxItems)
     var index = 0
@@ -188,14 +127,6 @@ inline fun <reified T> Array<T?>.redimensionar(modo: ModoRedimension, maxItems: 
     }
     return nuevoArray
 }
-
-/**
- * Ordena un array de items por un campo
- * @param mode Modo de ordenamiento: Ascendente o Descendente
- * @param selector Campo por el que ordenar
- * @return Array de items ordenado
- * @see ModoOrdenamiento
- */
 
 inline fun <reified T> Array<T?>.sortedBy(
     mode: ModoOrdenamiento = ModoOrdenamiento.DESCENDENTE,
@@ -215,16 +146,10 @@ inline fun <reified T> Array<T?>.sortedBy(
     return result
 }
 
-/**
- * Enumerado de modos de redimensión: Aumentar o Disminuir
- */
 enum class ModoRedimension {
     AUMENTAR, DISMINUIR
 }
 
-/**
- * Enumerado de modos de ordenamiento: Ascendente o Descendente
- */
 enum class ModoOrdenamiento {
     ASCENDENTE, DESCENDENTE
 }
