@@ -28,7 +28,6 @@ Queremos contar los vehículos según diferentes condiciones, y calcular la medi
 
 ### Métdos propios.
 
-- Motocicleta de mayor cilindrada con menos kilómetros
 - Coche de gasolina: consumo
 - Motocicleta: cilindrada
 - Coche eléctrico: tiempo de carga
