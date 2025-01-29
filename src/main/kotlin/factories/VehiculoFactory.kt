@@ -12,7 +12,7 @@ class VehiculoFactory {
     companion object {
         private val marcas = arrayOf("Peugeot", "Audi", "BMW", "Citroen", "Mini", "Ferrari", "Lamborghini")
         private val consonantes = arrayOf('B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z')
-        
+
         private fun generarMatricula(): String {
             val numeros = (1000..9999).random().toString()
             val letras = (1..3).map { consonantes.random() }.joinToString("")
