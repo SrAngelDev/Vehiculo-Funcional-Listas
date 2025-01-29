@@ -59,15 +59,10 @@ class VehiculosRepositoryImpl: VehiculosRepository {
 
     override fun create(item: Vehiculo): Vehiculo {
         logger.debug { "Crear vehiculo" }
-        val nuevoVehiculo = item.copy(
-            id = generateId(),
-            marca = item.marca,
-            matricula = item.matricula,
-            kilometros = item.kilometros,
-            createdAt = LocalDateTime.now(),
-            updatedAt = LocalDateTime.now(),
-            isDeleted = item.isDeleted,
-        )
+        val nuevoVehiculo = item.copy()
+        nuevoVehiculo.id = generateId()
+        nuevoVehiculo.createdAt = LocalDateTime.now()
+        nuevoVehiculo.updatedAt = LocalDateTime.now()
 
         var pos = vehiculos.indexOf { it == null }
         if (pos != -1) {
@@ -85,15 +80,8 @@ class VehiculosRepositoryImpl: VehiculosRepository {
     override fun update(id: Int, item: Vehiculo): Vehiculo? {
         logger.info { "Actualizando vehiculo" }
         return this.findById(id)?.let {
-            val nuevoVehiculo = it.copy(
-                id = item.id,
-                marca = item.marca,
-                matricula = item.matricula,
-                kilometros = item.kilometros,
-                createdAt = item.createdAt,
-                updatedAt = LocalDateTime.now(),
-                isDeleted = item.isDeleted,
-            )
+            val nuevoVehiculo = it.copy()
+            nuevoVehiculo.updatedAt = LocalDateTime.now()
             val index = vehiculos.indexOfFirst { vehiculo -> vehiculo?.id == id }
             if (index >= 0) {
                 vehiculos[index] = nuevoVehiculo
@@ -109,15 +97,7 @@ class VehiculosRepositoryImpl: VehiculosRepository {
             if (index >= 0) {
                 vehiculos[index] = null
             }
-            vehiculo.copy(
-                id = vehiculo.id,
-                marca = vehiculo.marca,
-                matricula = vehiculo.matricula,
-                kilometros = vehiculo.kilometros,
-                createdAt = vehiculo.createdAt,
-                updatedAt = LocalDateTime.now(),
-                isDeleted = true
-            ).also {
+            vehiculo.copy().also {
                 redimensionarSiHaceFalta()
                 logger.info { "Vehiculo borrado correctamente" }
             }
@@ -135,7 +115,7 @@ class VehiculosRepositoryImpl: VehiculosRepository {
     }
 
     private fun redimensionar(modo: ModoRedimension = ModoRedimension.AUMENTAR) {
-        logger.debug { "Redimensionando el array de estudiantes modo: ${modo.name}" }
+        logger.debug { "Redimensionando el array de vehiculos modo: ${modo.name}" }
         if (modo == ModoRedimension.DISMINUIR) {
             maxVehiculos /= 2
             vehiculos = vehiculos.redimensionar(ModoRedimension.DISMINUIR, maxVehiculos)

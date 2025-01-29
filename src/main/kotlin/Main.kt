@@ -14,7 +14,14 @@ fun main() {
     val v4 = vehiculoFactory.random()
     val v5 = vehiculoFactory.random()
 
+    println(v1)
+    println(v2)
+    println(v3)
+    println(v4)
+    println(v5)
+
     val vehiculos = VehiculosRepositoryImpl()
+
     vehiculos.create(v1)
     vehiculos.create(v2)
     vehiculos.create(v3)
@@ -25,7 +32,7 @@ fun main() {
     vehiculos.findAll().forEach { println(it) }
 
     println(color.brightYellow("Vehículo por ID:"))
-    println(vehiculos.findById(1))
+    println(vehiculos.findById(0))
     println()
 
     println(color.brightYellow("Vehículo por matrícula:"))
@@ -45,20 +52,20 @@ fun main() {
     println()
 
     println(color.brightYellow("Borrar un vehículo:"))
-    vehiculos.delete(1)
+    vehiculos.delete(3)
     vehiculos.findAll().forEach { println(it) }
     println()
 
     println(color.brightYellow("Todos los coches de gasolina:"))
-    vehiculos.filterBy { it?.tipo == Tipo.COCHE_GASOLINA }.forEach { println(it) }
+    vehiculos.filterBy { it is CocheGasolinaImpl }.forEach { println(it) }
     println()
 
     println(color.brightYellow("Todas las motocicletas:"))
-    vehiculos.filterBy { it?.tipo == Tipo.MOTOCICLETA }.forEach { println(it) }
+    vehiculos.filterBy { it is MotocicletaImpl }.forEach { println(it) }
     println()
 
     println(color.brightYellow("Todos los coches eléctricos:"))
-    vehiculos.filterBy { it?.tipo == Tipo.COCHE_ELECTRICO }.forEach { println(it) }
+    vehiculos.filterBy { it is CocheElectricoImpl }.forEach { println(it) }
     println()
 
     println(color.brightYellow("Contar vehículos:"))

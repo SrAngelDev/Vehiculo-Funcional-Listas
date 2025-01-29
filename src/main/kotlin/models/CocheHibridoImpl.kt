@@ -1,11 +1,10 @@
 package srangeldev.models
 
 class CocheHibridoImpl(
-    marca: String ,
+    marca: String,
     matricula: String,
     kilometros: Int,
-    tipo: Tipo = Tipo.COCHE_HIBRIDO
-): CocheElectrico, CocheGasolina, Vehiculo(marca = marca, matricula = matricula, kilometros = kilometros, tipo = tipo) {
+): CocheElectrico, CocheGasolina, Vehiculo(marca = marca, matricula = matricula, kilometros = kilometros) {
     override fun tiempoCarga() {
         println("El coche hibrido tiene un tiempo de carga de 1 hora")
     }
@@ -16,5 +15,9 @@ class CocheHibridoImpl(
 
     override fun toString(): String {
         return ("CocheHibrido=(id=$id, marca=$marca,matricula=$matricula, kilometros=$kilometros)")
+    }
+
+    override fun copy(): CocheHibridoImpl {
+        return CocheHibridoImpl(marca = marca, matricula = matricula, kilometros = kilometros)
     }
 }

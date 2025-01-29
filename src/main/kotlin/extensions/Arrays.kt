@@ -15,7 +15,7 @@ inline fun <T> Array<T?>.countBy(predicate: (T) -> Boolean = { true }): Int {
 
 inline fun <reified T> Array<T?>.filterBy(predicate: (T) -> Boolean): Array<T> {
     val count = this.count { it != null && predicate(it) }
-    val result = arrayOfNulls<T>(count)
+    val result = Array<T?>(count) { null }
 
     var index = 0
     for (item in this) {
@@ -28,7 +28,7 @@ inline fun <reified T> Array<T?>.filterBy(predicate: (T) -> Boolean): Array<T> {
     return result as Array<T>
 }
 
-fun <T> Array<T?>.forEach(action: (T) -> Unit) {
+fun <T> Array<out T>.forEach(action: (T) -> Unit) {
     for (item in this) {
         if (item != null) {
             action(item)
@@ -57,16 +57,6 @@ fun <T> Array<T?>.averageBy(selector: (T) -> Double, predicate: (T) -> Boolean):
     return if (count == 0) 0.0 else total / count
 }
 
-fun <T> Array<T?>.sumBy(predicate: (T) -> Boolean): Double {
-    var total = 0.0
-    for (element in this) {
-        if (element != null && predicate(element)) {
-            total += element.toString().toDouble()
-        }
-    }
-    return total
-}
-
 fun <T> Array<T?>.firstOrNull(predicate: (T) -> Boolean = { true }): T? {
     for (element in this) {
         if (element != null && predicate(element)) {
@@ -74,16 +64,6 @@ fun <T> Array<T?>.firstOrNull(predicate: (T) -> Boolean = { true }): T? {
         }
     }
     return null
-}
-
-fun <T> Array<T?>.lastOrNull(predicate: (T) -> Boolean = { true }): T? {
-    var lastMatch: T? = null
-    for (element in this) {
-        if (element != null && predicate(element)) {
-            lastMatch = element
-        }
-    }
-    return lastMatch
 }
 
 fun <T> Array<T?>.maxByOrNull(selector: (Vehiculo) -> Int, predicate: (T) -> Boolean): T? {
@@ -145,6 +125,8 @@ inline fun <reified T> Array<T?>.sortedBy(
     }
     return result
 }
+
+
 
 enum class ModoRedimension {
     AUMENTAR, DISMINUIR
