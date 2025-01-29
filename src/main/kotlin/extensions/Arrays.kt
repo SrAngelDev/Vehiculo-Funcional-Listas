@@ -45,16 +45,16 @@ fun <T> Array<T?>.indexOf(condition: (T?) -> Boolean): Int {
     return -1
 }
 
-fun <T> Array<T?>.averageBy(selector: (T) -> Double, predicate: (T) -> Boolean): Double {
+fun <T> Array<T?>.averageBy(selector: (T) -> Int, predicate: (T) -> Boolean): Int {
     var count = 0
-    var total = 0.0
+    var total = 0
     for (element in this) {
         if (element != null && predicate(element)) {
             total += selector(element)
             count++
         }
     }
-    return if (count == 0) 0.0 else total / count
+    return if (count == 0) 0 else total / count
 }
 
 fun <T> Array<T?>.firstOrNull(predicate: (T) -> Boolean = { true }): T? {
@@ -110,10 +110,10 @@ inline fun <reified T> Array<T?>.redimensionar(modo: ModoRedimension, maxItems: 
 
 inline fun <reified T> Array<T?>.sortedBy(
     mode: ModoOrdenamiento = ModoOrdenamiento.DESCENDENTE,
-    selector: (T) -> Double
+    selector: (T) -> Int
 ): Array<T> {
     val result = this.filterBy { true }
-    val compare: (Double, Double) -> Boolean =
+    val compare: (Int, Int) -> Boolean =
         if (mode == ModoOrdenamiento.ASCENDENTE) { a, b -> a > b } else { a, b -> a < b }
 
     for (i in result.indices) {

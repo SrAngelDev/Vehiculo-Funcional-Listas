@@ -22,7 +22,7 @@ class VehiculosRepositoryImpl: VehiculosRepository {
         return vehiculos.filterBy(predicate)
     }
 
-    override fun averageBy(selector: (Vehiculo) -> Double, predicate: (Vehiculo) -> Boolean): Double {
+    override fun averageBy(selector: (Vehiculo) -> Int, predicate: (Vehiculo) -> Boolean): Int {
         logger.debug { "Calculando la media" }
         return vehiculos.averageBy(selector, predicate)
     }
@@ -42,7 +42,7 @@ class VehiculosRepositoryImpl: VehiculosRepository {
         return vehiculos.minByOrNull(selector, predicate)
     }
 
-    override fun sortedBy(mode: ModoOrdenamiento, condition: (Vehiculo) -> Double): Array<Vehiculo> {
+    override fun sortedBy(mode: ModoOrdenamiento, condition: (Vehiculo) -> Int): Array<Vehiculo> {
         logger.debug { "Ordenando vehiculos" }
         return vehiculos.sortedBy(mode, condition)
     }

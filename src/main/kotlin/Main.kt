@@ -14,6 +14,11 @@ fun main() {
     val v3 = vehiculoFactory.random()
     val v4 = vehiculoFactory.random()
     val v5 = vehiculoFactory.random()
+    val v6 = vehiculoFactory.random()
+    val v7 = vehiculoFactory.random()
+    val v8 = vehiculoFactory.random()
+    val v9 = vehiculoFactory.random()
+    val v10 = vehiculoFactory.random()
 
     val vehiculos = VehiculosRepositoryImpl()
 
@@ -22,6 +27,11 @@ fun main() {
     vehiculos.create(v3)
     vehiculos.create(v4)
     vehiculos.create(v5)
+    vehiculos.create(v6)
+    vehiculos.create(v7)
+    vehiculos.create(v8)
+    vehiculos.create(v9)
+    vehiculos.create(v10)
 
     println(color.brightYellow("Todos los vehículos:"))
     vehiculos.findAll().forEach { println(it) }
@@ -45,7 +55,6 @@ fun main() {
     val vehiculoActualizado = CocheHibridoImpl("Peugueot", "5433JJB", 53000)
     println(vehiculos.findById(1))
     vehiculos.update(1, vehiculoActualizado)
-    println(vehiculoActualizado)
     println()
 
     println(color.brightYellow("Borrar un vehículo:"))
@@ -79,24 +88,24 @@ fun main() {
     println()
 
     println(color.brightYellow("Media de kilómetros:"))
-    println("Media de kilometros: ${vehiculos.averageBy({ it.kilometros.toDouble() }, { true })}")
+    println("Media de kilometros: ${vehiculos.averageBy({ it.kilometros }, { true })}")
     println()
 
 
     println(color.brightYellow("Ordenar vehículos por ID ascendente:"))
-    vehiculos.sortedBy(ModoOrdenamiento.ASCENDENTE) { it.id.toDouble() }.forEach { println(it) }
+    vehiculos.sortedBy(ModoOrdenamiento.ASCENDENTE) { it.id }.forEach { println(it) }
     println()
 
     println(color.brightYellow("Ordenar vehículos por ID descendente:"))
-    vehiculos.sortedBy(ModoOrdenamiento.DESCENDENTE) { it.id.toDouble() }.forEach { println(it) }
+    vehiculos.sortedBy(ModoOrdenamiento.DESCENDENTE) { it.id }.forEach { println(it) }
     println()
 
     println(color.brightYellow("Ordenar vehículos por kilómetros ascendente:"))
-    vehiculos.sortedBy(ModoOrdenamiento.ASCENDENTE) { it.kilometros.toDouble() }.forEach { println(it) }
+    vehiculos.sortedBy(ModoOrdenamiento.ASCENDENTE) { it.kilometros }.forEach { println(it) }
     println()
 
     println(color.brightYellow("Ordenar vehículos por kilómetros descendente:"))
-    vehiculos.sortedBy(ModoOrdenamiento.DESCENDENTE) { it.kilometros.toDouble() }.forEach { println(it) }
+    vehiculos.sortedBy(ModoOrdenamiento.DESCENDENTE) { it.kilometros }.forEach { println(it) }
     println()
 
 }
