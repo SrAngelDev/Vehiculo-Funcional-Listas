@@ -9,7 +9,8 @@ abstract class Vehiculo(
     var kilometros: Int,
     var createdAt: LocalDateTime = LocalDateTime.now(),
     var updatedAt: LocalDateTime = LocalDateTime.now(),
-    val isDeleted: Boolean = false,
+    var isDeleted: Boolean = false,
 ) {
     abstract fun copy(): Vehiculo
 }
+

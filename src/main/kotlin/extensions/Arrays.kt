@@ -3,40 +3,33 @@ package srangeldev.extensions
 import srangeldev.models.Vehiculo
 
 
-inline fun <T> Array<T?>.countBy(predicate: (T) -> Boolean = { true }): Int {
+inline fun <T> List<T>.countBy(predicate: (T) -> Boolean = { true }): Int {
     var count = 0
     for (element in this) {
-        if (element != null && predicate(element)) {
+        if (predicate(element)) {
             count++
         }
     }
     return count
 }
 
-inline fun <reified T> Array<T?>.filterBy(predicate: (T) -> Boolean): Array<T> {
-    val count = this.count { it != null && predicate(it) }
-    val result = Array<T?>(count) { null }
-
-    var index = 0
+inline fun <reified T> List<T>.filterBy(predicate: (T) -> Boolean): List<T> {
+    val result = mutableListOf<T>()
     for (item in this) {
-        if (item != null && predicate(item)) {
-            result[index] = item
-            index++
+        if (predicate(item)) {
+            result.add(item)
         }
     }
-
-    return result as Array<T>
+    return result
 }
 
-fun <T> Array<out T>.forEach(action: (T) -> Unit) {
+fun <T> List<T>.forEach(action: (T) -> Unit) {
     for (item in this) {
-        if (item != null) {
-            action(item)
-        }
+        action(item)
     }
 }
 
-fun <T> Array<T?>.indexOf(condition: (T?) -> Boolean): Int {
+fun <T> List<T>.indexOf(condition: (T?) -> Boolean): Int {
     for (index in this.indices) {
         if (condition(this[index])) {
             return index
@@ -45,11 +38,11 @@ fun <T> Array<T?>.indexOf(condition: (T?) -> Boolean): Int {
     return -1
 }
 
-fun <T> Array<T?>.averageBy(selector: (T) -> Int, predicate: (T) -> Boolean): Int {
+fun <T> List<T>.averageBy(selector: (T) -> Int, predicate: (T) -> Boolean): Int {
     var count = 0
     var total = 0
     for (element in this) {
-        if (element != null && predicate(element)) {
+        if (predicate(element)) {
             total += selector(element)
             count++
         }
@@ -57,20 +50,20 @@ fun <T> Array<T?>.averageBy(selector: (T) -> Int, predicate: (T) -> Boolean): In
     return if (count == 0) 0 else total / count
 }
 
-fun <T> Array<T?>.firstOrNull(predicate: (T) -> Boolean = { true }): T? {
+fun <T> List<T>.firstOrNull(predicate: (T) -> Boolean = { true }): T? {
     for (element in this) {
-        if (element != null && predicate(element)) {
+        if (predicate(element)) {
             return element
         }
     }
     return null
 }
 
-fun <T> Array<T?>.maxByOrNull(selector: (Vehiculo) -> Int, predicate: (T) -> Boolean): T? {
+fun <T> List<T>.maxByOrNull(selector: (Vehiculo) -> Int, predicate: (T) -> Boolean): T? {
     var maxElement: T? = null
     var maxValue: Int? = null
     for (element in this) {
-        if (element != null && predicate(element)) {
+        if (predicate(element)) {
             val value = selector(element as Vehiculo)
             if (maxValue == null || value > maxValue) {
                 maxValue = value
@@ -81,12 +74,12 @@ fun <T> Array<T?>.maxByOrNull(selector: (Vehiculo) -> Int, predicate: (T) -> Boo
     return maxElement
 }
 
-fun <T> Array<T?>.minByOrNull(selector: (Vehiculo) -> Int, predicate: (T) -> Boolean): T? {
+fun <T> List<T>.minByOrNull(selector: (T) -> Int, predicate: (T) -> Boolean): T? {
     var minElement: T? = null
     var minValue: Int? = null
     for (element in this) {
-        if (element != null && predicate(element)) {
-            val value = selector(element as Vehiculo)
+        if (predicate(element)) {
+            val value = selector(element)
             if (minValue == null || value < minValue) {
                 minValue = value
                 minElement = element
@@ -96,23 +89,12 @@ fun <T> Array<T?>.minByOrNull(selector: (Vehiculo) -> Int, predicate: (T) -> Boo
     return minElement
 }
 
-inline fun <reified T> Array<T?>.redimensionar(modo: ModoRedimension, maxItems: Int): Array<T?> {
-    val nuevoArray = arrayOfNulls<T>(maxItems)
-    var index = 0
-    for (item in this) {
-        if (item != null || modo != ModoRedimension.DISMINUIR) {
-            nuevoArray[index] = item
-            if (index < maxItems - 1) index++
-        }
-    }
-    return nuevoArray
-}
 
-inline fun <reified T> Array<T?>.sortedBy(
+inline fun <reified T> List<T>.sortedBy(
     mode: ModoOrdenamiento = ModoOrdenamiento.DESCENDENTE,
     selector: (T) -> Int
-): Array<T> {
-    val result = this.filterBy { true }
+): List<T> {
+    val result = this.filterBy { true }.toMutableList()
     val compare: (Int, Int) -> Boolean =
         if (mode == ModoOrdenamiento.ASCENDENTE) { a, b -> a > b } else { a, b -> a < b }
 
@@ -126,11 +108,6 @@ inline fun <reified T> Array<T?>.sortedBy(
     return result
 }
 
-
-
-enum class ModoRedimension {
-    AUMENTAR, DISMINUIR
-}
 
 enum class ModoOrdenamiento {
     ASCENDENTE, DESCENDENTE

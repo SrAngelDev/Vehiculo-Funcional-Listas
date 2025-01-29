@@ -21,3 +21,4 @@ class CocheElectricoImpl(
         return CocheElectricoImpl(marca = marca, matricula = matricula, kilometros = kilometros, createdAt = createdAt, updatedAt = updatedAt)
     }
 }
+

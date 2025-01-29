@@ -20,3 +20,4 @@ class CocheGasolinaImpl(
         return CocheGasolinaImpl(marca = marca, matricula = matricula, kilometros = kilometros, createdAt = createdAt, updatedAt = updatedAt)
     }
 }
+
