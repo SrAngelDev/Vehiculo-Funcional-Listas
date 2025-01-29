@@ -10,7 +10,7 @@ import kotlin.random.Random
 
 class VehiculoFactory {
     companion object {
-        private val marcas = arrayOf("Peugeot", "Audi", "BMW", "Citroen", "Mini", "Ferrari", "Lamborghini")
+        private val marcas = arrayOf("Peugeot", "Audi", "BMW", "Citroen", "Mini", "Ferrari", "Lamborghini", "Land Rover")
         private val consonantes = arrayOf('B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z')
 
         private fun generarMatricula(): String {
