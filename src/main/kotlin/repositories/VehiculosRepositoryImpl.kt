@@ -81,6 +81,7 @@ class VehiculosRepositoryImpl: VehiculosRepository {
         logger.info { "Actualizando vehiculo" }
         return this.findById(id)?.let {
             val nuevoVehiculo = it.copy()
+            nuevoVehiculo.id = generateId()
             nuevoVehiculo.updatedAt = LocalDateTime.now()
             val index = vehiculos.indexOfFirst { vehiculo -> vehiculo?.id == id }
             if (index >= 0) {

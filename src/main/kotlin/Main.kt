@@ -5,6 +5,7 @@ import srangeldev.views.*
 import srangeldev.factories.*
 import srangeldev.extensions.*
 import srangeldev.repositories.*
+import java.time.LocalDateTime
 
 fun main() {
     val vehiculoFactory = VehiculoFactory
@@ -13,12 +14,6 @@ fun main() {
     val v3 = vehiculoFactory.random()
     val v4 = vehiculoFactory.random()
     val v5 = vehiculoFactory.random()
-
-    println(v1)
-    println(v2)
-    println(v3)
-    println(v4)
-    println(v5)
 
     val vehiculos = VehiculosRepositoryImpl()
 
@@ -32,7 +27,7 @@ fun main() {
     vehiculos.findAll().forEach { println(it) }
 
     println(color.brightYellow("Vehículo por ID:"))
-    println(vehiculos.findById(0))
+    println(vehiculos.findById(3))
     println()
 
     println(color.brightYellow("Vehículo por matrícula:"))
@@ -42,13 +37,15 @@ fun main() {
     println(color.brightYellow("Guardar un nuevo vehículo:"))
     val nuevoVehiculo = CocheGasolinaImpl("Peugueot", "5433JJB", 53000)
     vehiculos.create(nuevoVehiculo)
+    println(color.yellow("Vehiculo nuevo: $nuevoVehiculo"))
     vehiculos.findAll().forEach { println(it) }
     println()
 
     println(color.brightYellow("Actualizar un vehículo:"))
     val vehiculoActualizado = CocheHibridoImpl("Peugueot", "5433JJB", 53000)
-    vehiculos.update(1, vehiculoActualizado)
     println(vehiculos.findById(1))
+    vehiculos.update(1, vehiculoActualizado)
+    println(vehiculoActualizado)
     println()
 
     println(color.brightYellow("Borrar un vehículo:"))
